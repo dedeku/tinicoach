@@ -1,0 +1,211 @@
+{
+  "main": {
+    "id": "2675002c5ef50b2b",
+    "type": "split",
+    "children": [
+      {
+        "id": "6d8a86d6b65edbbc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dfd74186b25079e7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CAPACITOR.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CAPACITOR"
+            }
+          },
+          {
+            "id": "c9f1f631abaf8b9a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Welcome.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Welcome"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "637cc76a2cec22e5",
+    "type": "split",
+    "children": [
+      {
+        "id": "298c6b48a428f8cf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "34d2b48eeab441fc",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "a8a02a8e36c6b170",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "59412751aa271de7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d91311ec9f99cfd3",
+    "type": "split",
+    "children": [
+      {
+        "id": "31eea9ef0234f84b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "20c54c8af6d0a270",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CAPACITOR.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for CAPACITOR"
+            }
+          },
+          {
+            "id": "4f16e339ffb2e98b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "CAPACITOR.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from CAPACITOR"
+            }
+          },
+          {
+            "id": "2ad00da22a0a0370",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "35e946a94bb7b402",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CAPACITOR.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of CAPACITOR"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "dfd74186b25079e7",
+  "lastOpenFiles": [
+    "Welcome.md",
+    "CAPACITOR.md",
+    "CMS.md",
+    "📝 NOTES.md",
+    "3. HÁLA NAPLÓ (GRATITUDE JOURNAL).md",
+    "11. ADMIN / CMS (PRISMIC).md",
+    "5. SZOKÁS KÖVETŐ (HABIT TRACKER).md",
+    "4. ERŐSSÉGKERESŐ KVÍZ (STRENGTHS FINDER).md",
+    "17. TECHNIKAI KÖVETELMÉNYEK.md",
+    "16. MVP PRIORITÁS.md",
+    "15. ADATBÁZIS TÁBLÁK (Összefoglaló).md",
+    "14. API ENDPOINTS SUMMARY.md",
+    "13. FEATURE GATE LOGIC.md",
+    "12. DASHBOARD (HOME SCREEN).md",
+    "11. ADMIN ",
+    "10. SUBSCRIPTION MANAGEMENT (STRIPE).md",
+    "9. PROFIL & BEÁLLÍTÁSOK.md",
+    "8. NAPI ÜZENETEK (PUSH NOTIFICATIONS).md",
+    "7. VIDEÓ KÖNYVTÁR.md",
+    "6. KÖZÖSSÉGI SZAVAZÁS (COMMUNITY VOTING).md",
+    "2. ONBOARDING FLOW (első bejelentkezés).md",
+    "1. AUTHENTICATION & USER MANAGEMENT.md"
+  ]
+}
