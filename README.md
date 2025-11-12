@@ -43,17 +43,12 @@ git remote add origin https://github.com/yourusername/tinicoach.git
 git remote add origin git@github.com:yourusername/tinicoach.git
 
 # Push to remote
-git push -u origin master
+git push -u origin main
 ```
 
 ### Branch Management
 
-The default branch is `master`. To rename to `main`:
-
-```bash
-git branch -m master main
-git push -u origin main
-```
+The default branch is `main`.
 
 ## Vercel Deployment
 
