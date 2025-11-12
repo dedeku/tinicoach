@@ -53,10 +53,22 @@ async function getDocsFiles(): Promise<DocFile[]> {
 
 async function getDocContent(slug: string): Promise<{ content: string; name: string } | null> {
   const docs = await getDocsFiles();
-  const decodedSlug = decodeURIComponent(slug);
-  const doc = docs.find((d) => decodeURIComponent(d.slug) === decodedSlug);
   
-  if (!doc) return null;
+  // Decode the incoming slug (it comes URL-encoded from the route)
+  const decodedSlug = decodeURIComponent(slug);
+  
+  // Try to find the doc by comparing decoded slugs
+  // The doc.slug is already encoded, so we need to decode it for comparison
+  const doc = docs.find((d) => {
+    const docSlugDecoded = decodeURIComponent(d.slug);
+    return docSlugDecoded === decodedSlug;
+  });
+  
+  if (!doc) {
+    console.error(`Doc not found for slug: ${slug} (decoded: ${decodedSlug})`);
+    console.error(`Available slugs: ${docs.slice(0, 5).map(d => decodeURIComponent(d.slug)).join(', ')}...`);
+    return null;
+  }
   
   try {
     // The path is already relative to docs directory
