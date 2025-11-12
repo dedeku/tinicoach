@@ -54,17 +54,30 @@ async function getDocsFiles(): Promise<DocFile[]> {
 async function getDocContent(slug: string): Promise<{ content: string; name: string } | null> {
   const docs = await getDocsFiles();
   
-  // Next.js decodes route params, so slug comes decoded
-  // But our stored slugs are encoded, so decode them for comparison
-  const decodedSlug = decodeURIComponent(slug);
-  const doc = docs.find((d) => {
-    const docSlugDecoded = decodeURIComponent(d.slug);
-    return docSlugDecoded === decodedSlug;
-  });
+  // Try both encoded and decoded matching
+  // Next.js may or may not decode route params depending on the context
+  let doc = docs.find((d) => d.slug === slug);
   
   if (!doc) {
-    console.error(`Doc not found for slug: ${slug} (decoded: ${decodedSlug})`);
-    console.error(`Available slugs (first 5): ${docs.slice(0, 5).map(d => decodeURIComponent(d.slug)).join(', ')}...`);
+    // Try decoded comparison
+    try {
+      const decodedSlug = decodeURIComponent(slug);
+      doc = docs.find((d) => {
+        const docSlugDecoded = decodeURIComponent(d.slug);
+        return docSlugDecoded === decodedSlug;
+      });
+    } catch (e) {
+      // If decoding fails, slug might already be decoded
+      doc = docs.find((d) => {
+        const docSlugDecoded = decodeURIComponent(d.slug);
+        return docSlugDecoded === slug;
+      });
+    }
+  }
+  
+  if (!doc) {
+    console.error(`Doc not found for slug: ${slug}`);
+    console.error(`Available slugs (first 5): ${docs.slice(0, 5).map(d => d.slug).join(', ')}...`);
     return null;
   }
   
@@ -85,8 +98,7 @@ async function getDocContent(slug: string): Promise<{ content: string; name: str
 
 export async function generateStaticParams() {
   const docs = await getDocsFiles();
-  // Return encoded slugs as they are stored
-  // Next.js will decode them when passed to the component
+  // Return encoded slugs as stored - Next.js will decode them when passing to component
   return docs.map((doc) => ({
     slug: doc.slug,
   }));
