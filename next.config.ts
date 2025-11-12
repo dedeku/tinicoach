@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   },
   // Vercel optimizations
   output: undefined, // Let Vercel handle output (default for Next.js)
+  // Ensure agent-os/product files are included in build
+  serverExternalPackages: [],
 };
 
 const pwaConfig = withPWA({

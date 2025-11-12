@@ -10,14 +10,20 @@ export default function Home() {
         <p className="text-center text-lg mb-8">
           Teen Life Coaching App - Solution-Focused
         </p>
-        <div className="text-center">
-          <Link
-            href="/docs"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-sans"
-          >
-            Dokumentáció megtekintése
-          </Link>
-        </div>
+              <div className="text-center space-x-4">
+                <Link
+                  href="/docs"
+                  className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-sans"
+                >
+                  Fejlesztői Dokumentáció
+                </Link>
+                <Link
+                  href="/specs"
+                  className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-sans"
+                >
+                  Product Dokumentáció
+                </Link>
+              </div>
       </div>
     </main>
   );

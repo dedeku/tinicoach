@@ -1,6 +1,13 @@
-## 11. ADMIN / CMS (PRISMIC)
+## 11. ADMIN / CMS
 
-### 11.1 Content Types (Prismic-ben)
+> **Status**: ⏳ TBD - Döntés függőben (Prismic vs Sanity)  
+> **Prioritás**: Future iteration (lásd: MVP PRIORITÁS.md)
+
+### 11.1 Content Types
+
+**Megjegyzés**: Az alábbi struktúra Prismic-re van tervezve, de a döntés még függőben van. A végleges implementáció lehet Prismic vagy Sanity CMS alapú.
+
+**Tervezett Content Types:**
 
 **DailyMessage:**
 
@@ -34,13 +41,21 @@
 
 ### 11.2 Content Sync (Backend)
 
-**Webhook:** Prismic → /api/prismic-webhook
+**Tervezett Flow:**
 
-**Flow:**
-
-- Prismic content updated
-- Webhook triggers
+- CMS content updated
+- Webhook triggers → `/api/cms-webhook` (endpoint név függ a választott CMS-től)
 - Backend cache invalidates
 - Next fetch: new content
+
+**Megjegyzés**: A pontos implementáció (Prismic vs Sanity) függ a döntéstől. Mindkét CMS támogat webhook-okat és cache invalidation-t.
+
+### 11.3 CMS Választás
+
+Lásd: `docs/CMS.md` - részletes összehasonlítás Prismic vs Sanity között.
+
+**Döntési szempontok:**
+- Prismic: Egyszerűbb, kevesebb konfiguráció, managed service
+- Sanity: Rugalmasabb, fejlesztőbarát, self-hosted Studio
 
 ---

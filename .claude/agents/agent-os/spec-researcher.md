@@ -46,11 +46,32 @@ Before generating questions, understand the broader product context:
    - Technical constraints and capabilities
    - Libraries and tools available
 
+4. **Read Existing Documentation**: Load all markdown files from `docs/` directory to understand:
+   - Existing feature specifications and implementations
+   - Technical documentation (database schemas, API endpoints, etc.)
+   - Implementation patterns already documented
+   - Related features that might inform or constrain this work
+   
+   **How to read docs directory:**
+   ```bash
+   # List all markdown files in docs directory
+   find docs -name "*.md" -type f | sort
+   ```
+   
+   Then use Read tool to load each markdown file found. Pay special attention to:
+   - Feature specifications (numbered files like `1. AUTHENTICATION & USER MANAGEMENT.md`)
+   - Technical documentation (`CMS.md`, `CAPACITOR.md`, etc.)
+   - Database schemas (`15. ADATBÁZIS TÁBLÁK (Összefoglaló).md`)
+   - API documentation (`14. API ENDPOINTS SUMMARY.md`)
+   - Welcome.md for overview and structure
+
 This context will help you:
 - Ask more relevant and contextual questions
 - Identify existing features that might be reused or referenced
 - Ensure the feature aligns with product goals
 - Understand user needs and expectations
+- Avoid duplicating existing functionality
+- Reference existing patterns and implementations
 
 ### Step 3: Generate First Round of Questions WITH Visual Request AND Reusability Check
 
@@ -60,11 +81,13 @@ Based on the initial idea, generate 6-9 targeted, NUMBERED questions that explor
 
 **Question generation guidelines:**
 - Start each question with a number
-- Propose sensible assumptions based on best practices
+- Propose sensible assumptions based on best practices AND existing documentation from `docs/` directory
+- Reference existing features or patterns from the documentation when relevant
 - Frame questions as "I'm assuming X, is that correct?"
 - Make it easy for users to confirm or provide alternatives
 - Include specific suggestions they can say yes/no to
 - Always end with an open question about exclusions
+- If similar features exist in docs, mention them: "I see you already have [feature] documented. Should this new feature follow similar patterns?"
 
 **Required output format:**
 ```
@@ -159,7 +182,7 @@ Please provide these additional details.
 
 ### Step 6: Save Complete Requirements
 
-After all questions are answered, write ALL gathered information to `[spec-path]/planning/requirements.md`:
+After all questions are answered, write ALL gathered information to `[spec-path]/planning/requirements.md`. Include references to relevant documentation from `docs/` directory:
 
 ```markdown
 # Spec Requirements: [Spec Name]
@@ -187,7 +210,11 @@ After all questions are answered, write ALL gathered information to `[spec-path]
 - Components to potentially reuse: [user's description]
 - Backend logic to reference: [user's description]
 
-[If user provided no similar features]
+**Related Documentation Found:**
+- `docs/[filename].md`: [Brief description of relevant content]
+- [Reference specific sections if applicable]
+
+[If user provided no similar features AND no relevant docs found]
 No similar existing features identified for reference.
 
 ### Follow-up Questions
@@ -264,13 +291,15 @@ Ready for specification creation.
 ## Important Constraints
 
 - **MANDATORY**: Always run bash command to check visuals folder after receiving user answers
+- **MANDATORY**: Always read all markdown files from `docs/` directory in Step 2 before generating questions
 - Visual check is based on actual files found via bash, NOT user statements
 - Check filenames for low-fidelity indicators and clarify design intent if found
 - Ask about existing similar features to promote code reuse
+- Reference existing documentation from `docs/` when generating questions
 - Keep follow-ups minimal (1-3 questions max)
 - Save user's exact answers, not interpretations
 - Document all visual findings including fidelity level
-- Document paths to similar features for spec-writer to reference
+- Document paths to similar features AND relevant documentation for spec-writer to reference
 - Create comprehensive requirements summary
 - OUTPUT questions and STOP to wait for orchestrator to relay responses
 

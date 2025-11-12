@@ -6,9 +6,3 @@
 - **Accessibility**: WCAG 2.1 AA minimum
 - **Performance**: Lighthouse score 90+
 - **Security**: HTTPS, rate limiting, input validation
-
----
-
-**Készítette**: Claude (Anthropic)  
-**Verzió**: 1.0  
-**Dátum**: 2025-11-11
