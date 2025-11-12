@@ -21,7 +21,7 @@ npm install
 npm run dev
 
 # Build for production (local testing)
-npm run build -- --webpack
+npm run build
 
 # Start production server (local testing)
 npm start
@@ -85,8 +85,8 @@ ONESIGNAL_REST_API_KEY="your-api-key"
 2. **Import Project**: Import in Vercel dashboard
 3. **Environment Variables**: Add all required env vars in Vercel dashboard
 4. **Build Settings**: 
-   - Framework Preset: Next.js
-   - Build Command: `npm run build -- --webpack` (or leave default)
+   - Framework Preset: Next.js (auto-detected)
+   - Build Command: `npm run build` (default, includes --webpack flag)
    - Output Directory: `.next` (default)
 
 ### Vercel Postgres
@@ -131,4 +131,4 @@ tinicoach/
 
 - PWA is disabled in development mode (`NODE_ENV === "development"`)
 - Service Worker is generated automatically in production builds
-- Use `--webpack` flag for builds (required for next-pwa compatibility)
+- Build script includes `--webpack` flag automatically (required for next-pwa compatibility)
