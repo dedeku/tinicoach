@@ -8,42 +8,39 @@ interface DocFile {
   slug: string;
 }
 
+async function walkDirectory(dir: string, baseDir: string = dir): Promise<DocFile[]> {
+  const files: DocFile[] = [];
+  const entries = await readdir(dir, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const fullPath = join(dir, entry.name);
+    
+    if (entry.isDirectory()) {
+      const subFiles = await walkDirectory(fullPath, baseDir);
+      files.push(...subFiles);
+    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      const relativePath = fullPath.replace(baseDir + "/", "");
+      const slug = relativePath
+        .replace(/\.md$/, "")
+        .replace(/\//g, "-")
+        .replace(/ /g, "-");
+      
+      files.push({
+        name: entry.name.replace(".md", ""),
+        path: relativePath,
+        slug: encodeURIComponent(slug),
+      });
+    }
+  }
+  
+  return files;
+}
+
 async function getDocsFiles(): Promise<DocFile[]> {
   const docsDir = join(process.cwd(), "docs");
   
   try {
-    const files = await readdir(docsDir, { recursive: true, withFileTypes: true });
-    
-    const docFiles: DocFile[] = [];
-    
-    for (const file of files) {
-      if (file.isFile() && file.name.endsWith(".md")) {
-        // Get relative path from docs directory
-        // file.parentPath contains full path, we need relative part
-        let relativePath: string;
-        if (file.parentPath) {
-          // Extract relative path by removing docsDir prefix
-          const parentRelative = file.parentPath.startsWith(docsDir)
-            ? file.parentPath.substring(docsDir.length + 1)
-            : file.parentPath;
-          relativePath = parentRelative ? `${parentRelative}/${file.name}` : file.name;
-        } else {
-          relativePath = file.name;
-        }
-        
-        // Create slug: replace / with -, remove .md, handle special chars
-        const slug = relativePath
-          .replace(/\.md$/, "")
-          .replace(/\//g, "-")
-          .replace(/ /g, "-");
-        
-        docFiles.push({
-          name: file.name.replace(".md", ""),
-          path: relativePath,
-          slug: encodeURIComponent(slug),
-        });
-      }
-    }
+    const docFiles = await walkDirectory(docsDir, docsDir);
     
     return docFiles.sort((a, b) => {
       // Sort Welcome.md first, then numbered files, then others
