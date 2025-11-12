@@ -87,8 +87,10 @@ async function getDocContent(slug: string): Promise<{ content: string; name: str
 
 export async function generateStaticParams() {
   const docs = await getDocsFiles();
+  // Return decoded slugs for Next.js static generation
+  // Next.js will encode them automatically in the URL
   return docs.map((doc) => ({
-    slug: doc.slug,
+    slug: decodeURIComponent(doc.slug),
   }));
 }
 
