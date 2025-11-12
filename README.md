@@ -27,6 +27,34 @@ npm run build -- --webpack
 npm start
 ```
 
+## Git Repository
+
+The project is initialized as a git repository with an initial commit.
+
+### Connect to Remote Repository
+
+To connect to a remote repository (GitHub, GitLab, Bitbucket):
+
+```bash
+# Add remote repository
+git remote add origin https://github.com/yourusername/tinicoach.git
+
+# Or using SSH
+git remote add origin git@github.com:yourusername/tinicoach.git
+
+# Push to remote
+git push -u origin master
+```
+
+### Branch Management
+
+The default branch is `master`. To rename to `main`:
+
+```bash
+git branch -m master main
+git push -u origin main
+```
+
 ## Vercel Deployment
 
 This project is configured for Vercel deployment.
