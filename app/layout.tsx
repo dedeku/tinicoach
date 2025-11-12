@@ -2,13 +2,13 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TiniLány - Teen Life Coaching",
+  title: "tinicoach - Teen Life Coaching",
   description: "Solution-Focused Teen Life Coaching App",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "TiniLány",
+    title: "tinicoach",
   },
 };
 

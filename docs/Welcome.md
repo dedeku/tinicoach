@@ -1,4 +1,4 @@
-# TiniLány MVP - Fejlesztői Feature Specifikáció
+# tinicoach MVP - Fejlesztői Feature Specifikáció
 
 > **Projekt**: Teen Life Coaching App (Solution-Focused, Magyar nyelv)  
 > **Platform**: Progressive Web App (PWA)  

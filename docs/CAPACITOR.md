@@ -234,7 +234,7 @@ capacitor-updater upload
 
 **Alternatíva:** Saját macOS gép (Mac Mini, MacBook)
 
-### 3.5 Use Case a TiniLány App-ban
+### 3.5 Use Case a tinicoach App-ban
 
 #### PWA vs Capacitor Döntés
 
@@ -256,7 +256,7 @@ capacitor-updater upload
 - ✅ App Store presence marketing szempontból fontos
 - ✅ Van budget ($99/év + fejlesztői idő)
 
-#### Capacitor Funkciók TiniLány-hoz
+#### Capacitor Funkciók tinicoach-hoz
 
 **Hasznos natív API-k:**
 

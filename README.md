@@ -1,4 +1,4 @@
-# TiniLány MVP
+# tinicoach MVP
 
 Teen Life Coaching App - Solution-Focused
 

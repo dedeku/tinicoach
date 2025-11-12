@@ -1,7 +1,7 @@
 # Technológiai Összefoglaló: Prismic, Sanity, Capacitor
 
 > **Nyelv**: Magyar  
-> **Projekt kontextus**: TiniLány Teen Coaching App  
+> **Projekt kontextus**: tinicoach Teen Coaching App  
 > **Dátum**: 2025-11-11
 
 ---
@@ -11,7 +11,7 @@
 1. [Prismic CMS](https://claude.ai/chat/0dd5ac28-c22a-4e04-b312-67aa2086a94d#1-prismic-cms)
 2. [Sanity CMS](https://claude.ai/chat/0dd5ac28-c22a-4e04-b312-67aa2086a94d#2-sanity-cms)
 3. [Összehasonlítás](https://claude.ai/chat/0dd5ac28-c22a-4e04-b312-67aa2086a94d#4-%C3%B6sszehasonl%C3%ADt%C3%A1s)
-4. [Ajánlás a TiniLány Projekthez](https://claude.ai/chat/0dd5ac28-c22a-4e04-b312-67aa2086a94d#5-aj%C3%A1nl%C3%A1s-a-tinil%C3%A1ny-projekthez)
+4. [Ajánlás a tinicoach Projekthez](https://claude.ai/chat/0dd5ac28-c22a-4e04-b312-67aa2086a94d#5-aj%C3%A1nl%C3%A1s-a-tinicoach-projekthez)
 
 ---
 
@@ -140,7 +140,7 @@ export const client = prismic.createClient('tinilany', {
 |**Medium**|$25/hó/user|Webhooks, scheduling, role management|
 |**Enterprise**|Custom|SLA, support, unlimited|
 
-### 1.4 Use Case a TiniLány App-ban
+### 1.4 Use Case a tinicoach App-ban
 
 **Prismic-ban tárolt tartalmak:**
 
@@ -151,7 +151,7 @@ export const client = prismic.createClient('tinilany', {
 - ✅ Blog cikkek (később)
 - ✅ Erősségkereső kvíz kérdések
 
-**Előny a TiniLány-nál:**
+**Előny a tinicoach-nál:**
 
 - Feleséged (coach) könnyen szerkesztheti a tartalmakat
 - Nem kell backend fejlesztés minden tartalomváltozáshoz
@@ -316,7 +316,7 @@ const videos = await client.fetch(`
 |**Team**|$249/hó|20 users, 5M req, 500GB, support|
 |**Enterprise**|Custom|Unlimited, SLA, dedicated support|
 
-### 2.4 Use Case a TiniLány App-ban
+### 2.4 Use Case a tinicoach App-ban
 
 **Sanity előnyök a projekthez:**
 
@@ -380,7 +380,7 @@ const videos = await client.fetch(`
 
 ---
 
-## 5. AJÁNLÁS A TINILÁNY PROJEKTHEZ
+## 5. AJÁNLÁS A TINICOACH PROJEKTHEZ
 
 ### 5.1 CMS Választás: **PRISMIC** 🏆
 
