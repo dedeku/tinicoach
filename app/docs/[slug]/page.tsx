@@ -54,15 +54,16 @@ async function getDocsFiles(): Promise<DocFile[]> {
 async function getDocContent(slug: string): Promise<{ content: string; name: string } | null> {
   const docs = await getDocsFiles();
   
-  // Next.js automatically decodes route params, so slug is already decoded
-  // Compare with decoded stored slugs
+  // Next.js decodes route params, so slug comes decoded
+  // But our stored slugs are encoded, so decode them for comparison
+  const decodedSlug = decodeURIComponent(slug);
   const doc = docs.find((d) => {
     const docSlugDecoded = decodeURIComponent(d.slug);
-    return docSlugDecoded === slug;
+    return docSlugDecoded === decodedSlug;
   });
   
   if (!doc) {
-    console.error(`Doc not found for slug: ${slug}`);
+    console.error(`Doc not found for slug: ${slug} (decoded: ${decodedSlug})`);
     console.error(`Available slugs (first 5): ${docs.slice(0, 5).map(d => decodeURIComponent(d.slug)).join(', ')}...`);
     return null;
   }
@@ -84,10 +85,10 @@ async function getDocContent(slug: string): Promise<{ content: string; name: str
 
 export async function generateStaticParams() {
   const docs = await getDocsFiles();
-  // Return decoded slugs for Next.js static generation
-  // Next.js will encode them automatically in the URL
+  // Return encoded slugs as they are stored
+  // Next.js will decode them when passed to the component
   return docs.map((doc) => ({
-    slug: decodeURIComponent(doc.slug),
+    slug: doc.slug,
   }));
 }
 
