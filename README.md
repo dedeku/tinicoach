@@ -84,7 +84,26 @@ ONESIGNAL_REST_API_KEY="your-api-key"
 
 #### Supabase Configuration
 
-When using Supabase PostgreSQL:
+When using Supabase PostgreSQL with Vercel:
+
+**Option 1: Using Vercel Shared Environment Variables (Recommended - Already Configured)**
+
+If you have Supabase linked to Vercel, the Prisma schema is already configured to use:
+- `POSTGRES_PRISMA_URL` (connection pooling) - automatically provided by Vercel
+- `POSTGRES_URL_NON_POOLING` (direct connection) - automatically provided by Vercel
+
+**No additional configuration needed!** The Prisma schema (`prisma/schema.prisma`) is already set up to use these Vercel variables.
+
+**If you're NOT using Vercel Supabase integration**, you can modify `prisma/schema.prisma` to use standard names:
+```prisma
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+```
+
+**Option 2: Manual Configuration**
 
 1. **Get Connection Strings** from Supabase Dashboard → Settings → Database:
    - **Connection Pooling URL** (port 6543): Use for `DATABASE_URL`
@@ -96,7 +115,7 @@ When using Supabase PostgreSQL:
    - Add `DATABASE_URL` (connection pooling URL)
    - Add `DIRECT_URL` (direct connection URL)
 
-3. **Why both?**
+**Why both?**
    - `DATABASE_URL`: Used for runtime queries (connection pooling for better performance)
    - `DIRECT_URL`: Used for Prisma migrations and introspection (requires direct connection)
 
