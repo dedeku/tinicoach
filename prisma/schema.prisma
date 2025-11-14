@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================
+// AUTHENTICATION & USER MANAGEMENT MODELS
+// ============================================
+
+// User model
+model User {
+  id                    String    @id @default(uuid())
+  email                 String    @unique
+  password              String?   // Nullable for SSO-only users
+  emailVerified         Boolean   @default(false)
+  emailVerifiedAt       DateTime?
+
+  // Profile
+  fullName              String
+  nickname              String
+  birthdate             DateTime  @db.Date
+  profilePicture        String?
+  bio                   String?   @db.Text
+  gender                Gender?
+
+  // Metadata
+  role                  UserRole  @default(TEEN)
+  parentalConsentGiven  Boolean   @default(false)
+  parentalConsentDate   DateTime?
+  termsAcceptedAt       DateTime
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  // Account status
+  status                AccountStatus @default(ACTIVE)
+  deletedAt             DateTime?
+  reactivationToken     String?   @unique
+
+  // Sessions & security
+  lastLoginAt           DateTime?
+  passwordChangedAt     DateTime?
+
+  // Account recovery (future)
+  secondaryEmail        String?
+  phoneNumber           String?
+
+  // Relations
+  accounts              Account[]
+  sessions              Session[]
+  verificationTokens    VerificationToken[]
+
+  @@index([email])
+  @@index([reactivationToken])
+}
+
+// SSO provider accounts
+model Account {
+  id                String    @id @default(uuid())
+  userId            String
+  provider          SSOProvider
+  providerAccountId String
+  accessToken       String?   @db.Text  // Encrypted
+  refreshToken      String?   @db.Text  // Encrypted
+  expiresAt         DateTime?
+  createdAt         DateTime  @default(now())
+
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+// Email verification and password reset tokens
+model VerificationToken {
+  id        String            @id @default(uuid())
+  userId    String
+  token     String            @unique
+  type      TokenType
+  expiresAt DateTime
+  createdAt DateTime          @default(now())
+
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId, type])
+}
+
+// User sessions
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  sessionToken String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([sessionToken])
+  @@index([userId])
+}
+
+// ============================================
+// ENUMS
+// ============================================
+
+enum UserRole {
+  TEEN
+  ADMIN
+  COACH    // Future
+  PARENT   // Future
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+enum AccountStatus {
+  ACTIVE
+  DELETED
+  SUSPENDED
+}
+
+enum SSOProvider {
+  GOOGLE
+  FACEBOOK
+  APPLE
+}
+
+enum TokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}

@@ -1,5 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "tinicoach - Teen Life Coaching",
@@ -13,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#FF4315",
 };
 
 export default function RootLayout({
@@ -22,8 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="hu">
-      <body>{children}</body>
+    <html lang="hu" className={montserrat.variable}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

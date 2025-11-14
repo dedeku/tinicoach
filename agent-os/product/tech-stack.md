@@ -13,7 +13,7 @@
 - **Form Management:** React Hook Form
 - **Validation:** Zod
 - **Markdown Rendering:** react-markdown with remark-gfm
-- **UI Components:** Custom components with Tailwind
+- **UI Components:** Radix UI with Tailwind
 
 ## Database & Storage
 

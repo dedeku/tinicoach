@@ -4,10 +4,8 @@ import withPWA from "next-pwa";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // Explicitly use webpack for next-pwa compatibility
-  webpack: (config) => {
-    return config;
-  },
+  // Enable Turbopack for Next.js 16+ (silences warning)
+  turbopack: {},
   // Vercel optimizations
   output: undefined, // Let Vercel handle output (default for Next.js)
   // Ensure agent-os/product files are included in build
