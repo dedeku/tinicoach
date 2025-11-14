@@ -73,7 +73,7 @@ export type RegisterInput = z.infer<typeof registerSchema>
 export const loginSchema = z.object({
   email: emailSchema,
   password: z.string().min(1, 'A jelszó megadása kötelező'),
-  rememberMe: z.boolean().default(false),
+  rememberMe: z.boolean(),
 })
 
 export type LoginInput = z.infer<typeof loginSchema>

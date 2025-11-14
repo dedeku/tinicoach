@@ -23,6 +23,9 @@ export function LoginForm({
     formState: { errors },
   } = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      rememberMe: false,
+    },
   })
 
   const onSubmit = async (data: LoginInput) => {
