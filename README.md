@@ -59,8 +59,11 @@ This project is configured for Vercel deployment.
 Create a `.env.local` file for local development (see `.env.example`):
 
 ```bash
-# Database
+# Database (Required)
+# For Supabase: Use connection pooling URL for DATABASE_URL and direct URL for DIRECT_URL
+# For Vercel Postgres: Use the same URL for both (or omit DIRECT_URL)
 DATABASE_URL="postgresql://..."
+DIRECT_URL="postgresql://..."  # Required for Supabase, optional for Vercel Postgres
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
@@ -79,6 +82,24 @@ ONESIGNAL_APP_ID="your-app-id"
 ONESIGNAL_REST_API_KEY="your-api-key"
 ```
 
+#### Supabase Configuration
+
+When using Supabase PostgreSQL:
+
+1. **Get Connection Strings** from Supabase Dashboard → Settings → Database:
+   - **Connection Pooling URL** (port 6543): Use for `DATABASE_URL`
+     - Format: `postgresql://postgres.[project-ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres?pgbouncer=true`
+   - **Direct Connection URL** (port 5432): Use for `DIRECT_URL`
+     - Format: `postgresql://postgres.[project-ref]:[password]@aws-0-[region].pooler.supabase.com:5432/postgres`
+
+2. **Add to Vercel**: In Vercel dashboard → Project Settings → Environment Variables:
+   - Add `DATABASE_URL` (connection pooling URL)
+   - Add `DIRECT_URL` (direct connection URL)
+
+3. **Why both?**
+   - `DATABASE_URL`: Used for runtime queries (connection pooling for better performance)
+   - `DIRECT_URL`: Used for Prisma migrations and introspection (requires direct connection)
+
 ### Vercel Setup
 
 1. **Connect Repository**: Push to GitHub/GitLab/Bitbucket
@@ -89,12 +110,22 @@ ONESIGNAL_REST_API_KEY="your-api-key"
    - Build Command: `npm run build` (default, includes --webpack flag)
    - Output Directory: `.next` (default)
 
-### Vercel Postgres
+### Database Setup
+
+#### Vercel Postgres
 
 When using Vercel Postgres:
 - Database connection string is automatically provided via `DATABASE_URL`
+- Set `DIRECT_URL` to the same value as `DATABASE_URL` (or omit it)
 - Use Prisma with `prisma migrate deploy` in build command if needed
 - Connection pooling is handled automatically
+
+#### Supabase PostgreSQL
+
+When using Supabase:
+- **Required**: Both `DATABASE_URL` (pooling) and `DIRECT_URL` (direct) must be set
+- Get connection strings from Supabase Dashboard → Settings → Database
+- See "Supabase Configuration" section above for details
 
 ## PWA Icons
 
